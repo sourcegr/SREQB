@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Sre\QueryBuilder\Grammars;
+namespace Sourcegr\QueryBuilder\Grammars;
+
 
 use PDO;
 
-use function PHPUnit\Framework\throwException;
 
 class MySQL
 {
@@ -114,7 +114,7 @@ class MySQL
 
         if ($res === false) {
             $info = $st->errorInfo();
-            throw new UpdateErrorException($info[0] . ': ' . $info[2] . ' (' . $info[1] . ')');
+            throw new DeleteErrorException($info[0] . ': ' . $info[2] . ' (' . $info[1] . ')');
         }
 
         return $st->rowCount();

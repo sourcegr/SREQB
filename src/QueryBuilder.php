@@ -1,12 +1,11 @@
 <?php
 
 
-namespace Sre\QueryBuilder;
+namespace Sourcegr\QueryBuilder;
 
 
 use InvalidArgumentException;
-use Sre\QueryBuilder\Grammars\MySQL;
-use Sre\QueryBuilder\Grammars\UpdateErrorException;
+use Sourcegr\QueryBuilder\Exceptions\UpdateErrorException;
 
 class QueryBuilder
 {
@@ -28,9 +27,6 @@ class QueryBuilder
 
     private $sqlParams = [];
 
-    /**
-     * @var MySQL
-     */
     private $grammar;
 
 

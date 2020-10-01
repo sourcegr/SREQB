@@ -1,16 +1,16 @@
 <?php
 
-namespace Test;
+namespace Tests;
 
 
-use Sre\QueryBuilder\QueryBuilder;
-use Sre\QueryBuilder\DB;
-use Sre\QueryBuilder\Raw;
-use Sre\QueryBuilder\Grammars\MySQL;
-use Sre\QueryBuilder\Grammars\InsertErrorException;
-use PHPUnit\Framework\TestCase;
-use Test\Stub\Grammar;
+use Sourcegr\QueryBuilder\QueryBuilder;
+use Sourcegr\QueryBuilder\DB;
+use Sourcegr\QueryBuilder\Raw;
+use Sourcegr\QueryBuilder\Grammars\MySQL;
+use Sourcegr\QueryBuilder\Exceptions\InsertErrorException;
+use Tests\Stub\Grammar;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 class InsertTest extends TestCase
 {

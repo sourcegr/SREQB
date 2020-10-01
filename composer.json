@@ -1,7 +1,7 @@
 {
-    "name": "sourcegr/sreqb",
+    "name": "sourcegr/query-builder",
     "type": "library",
-    "description": "SREQB is a query builder for easy SQL queries.",
+    "description": "QB is a query builder for easy SQL queries.",
     "license": "MIT",
     "authors": [
         {
@@ -15,10 +15,10 @@
         "ext-pdo": "*"
     },
     "autoload": {
-        "psr-4": {"Sre\\": "src/"}
+        "psr-4": {"Sourcegr\\QueryBuilder\\": "src/"}
     },
     "autoload-dev": {
-        "psr-4": {"Test\\":  "test/"}
+        "psr-4": {"Tests\\":  "tests/"}
     },
     "require-dev": {
         "phpunit/phpunit": "^9.3"

@@ -1,8 +1,8 @@
 <?php
 
-namespace Test\Grammars;
+namespace Tests\Grammars;
 
-use Sre\QueryBuilder\Grammars\MySQL;
+use Sourcegr\QueryBuilder\Grammars\MySQL;
 use PHPUnit\Framework\TestCase;
 
 class MySQLTest extends TestCase

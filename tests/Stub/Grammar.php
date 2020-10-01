@@ -1,6 +1,6 @@
 <?php
 
-namespace Test\Stub;
+namespace Tests\Stub;
 
 class Grammar
 {

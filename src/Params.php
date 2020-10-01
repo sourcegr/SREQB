@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Sre\QueryBuilder;
+namespace Sourcegr\QueryBuilder;
 
 
 use function PHPUnit\Framework\isNull;

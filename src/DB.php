@@ -1,10 +1,10 @@
 <?php
 
 
-namespace Sre\QueryBuilder;
+namespace Sourcegr\QueryBuilder;
 
 
-use Sre\QueryBuilder\Grammars\MySQL;
+use Sourcegr\QueryBuilder\QueryBuilder\Grammars\MySQL;
 use InvalidArgumentException;
 
 class DB

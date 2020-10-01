@@ -1,11 +1,11 @@
 <?php
 
-namespace Test;
+namespace Tests;
 
 
-use Sre\QueryBuilder\QueryBuilder;
-use Sre\QueryBuilder\DB;
-use Test\Stub\Grammar;
+use Sourcegr\QueryBuilder\QueryBuilder;
+use Sourcegr\QueryBuilder\DB;
+use Tests\Stub\Grammar;
 use ArgumentCountError;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;

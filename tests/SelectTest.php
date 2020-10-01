@@ -1,14 +1,14 @@
 <?php
 
-namespace Test;
+namespace Tests;
 
 
-use Sre\QueryBuilder\QueryBuilder;
-use Sre\QueryBuilder\DB;
-use Sre\QueryBuilder\Grammars\MySQL;
+use Sourcegr\QueryBuilder\QueryBuilder;
+use Sourcegr\QueryBuilder\DB;
+use Sourcegr\QueryBuilder\Grammars\MySQL;
+use Sourcegr\QueryBuilder\Raw;
+use Tests\Stub\Grammar;
 use PHPUnit\Framework\TestCase;
-use Sre\QueryBuilder\Raw;
-use \Test\Stub\Grammar;
 
 class SelectTest extends TestCase
 {

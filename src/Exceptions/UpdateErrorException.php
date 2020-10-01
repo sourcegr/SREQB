@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Sre\QueryBuilder\Grammars;
+namespace Sourcegr\QueryBuilder\Exceptions;
 
 use Exception;
 

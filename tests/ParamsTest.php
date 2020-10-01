@@ -1,9 +1,9 @@
 <?php
 
-namespace Test;
+namespace Tests;
 
 
-use Sre\QueryBuilder\Params;
+use Sourcegr\QueryBuilder\Params;
 use PHPUnit\Framework\TestCase;
 
 class ParamsTest extends TestCase

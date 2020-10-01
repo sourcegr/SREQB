@@ -1,3 +1,3 @@
-SREQB
+QB
 ===
 A PHP Query Builder
