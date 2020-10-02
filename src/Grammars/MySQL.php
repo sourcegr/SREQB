@@ -5,6 +5,10 @@ namespace Sourcegr\QueryBuilder\Grammars;
 
 
 use PDO;
+use Sourcegr\QueryBuilder\Exceptions\SelectErrorException;
+use Sourcegr\QueryBuilder\Exceptions\InsertErrorException;
+use Sourcegr\QueryBuilder\Exceptions\UpdateErrorException;
+use Sourcegr\QueryBuilder\Exceptions\DeleteErrorException;
 
 
 class MySQL
