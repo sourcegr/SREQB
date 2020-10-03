@@ -6,7 +6,6 @@ namespace Tests;
 use Sourcegr\QueryBuilder\QueryBuilder;
 use Sourcegr\QueryBuilder\DB;
 use Sourcegr\QueryBuilder\Raw;
-use Sourcegr\QueryBuilder\Grammars\MySQL;
 use Sourcegr\QueryBuilder\Exceptions\DeleteErrorException;
 use Tests\Stub\Grammar;
 use InvalidArgumentException;
@@ -40,7 +39,7 @@ class DeleteTest extends TestCase
         $res = $this->init();
         [$actual, $params] = $res->where('id', 1)->delete();
 
-        $expected = 'DELETE FROM ' . static::$table.' WHERE id=?';
+        $expected = 'DELETE FROM ' . static::$table.' WHERE id = ?';
         $expectedParams = [1];
 
         $this->assertEquals($expected, $actual, 'testDelete SQL');
