@@ -92,7 +92,7 @@ class InsertTest extends TestCase
 //        $res = $this->init();
 //        [$actual, $params] = $res->update('name', 'new name');
 //
-//        $expected = 'UPDATE table SET name=?';
+//        $expected = 'UPDATE table SET name = ?';
 //        $expectedParams = ['new name'];
 //
 //        $this->assertEquals($expected, $actual, 'testInsertWith2Parameters SQL');
@@ -116,7 +116,7 @@ class InsertTest extends TestCase
 //        $res = $this->init();
 //        [$actual, $params] = $res->where('id')->update(['name'=> 'new name']);
 //
-//        $expected = 'UPDATE table SET name=? WHERE id IS NOT NULL';
+//        $expected = 'UPDATE table SET name = ? WHERE id IS NOT NULL';
 //        $expectedParams = ['new name'];
 //
 //        $this->assertEquals($expected, $actual, 'testInsertWithWhere SQL');

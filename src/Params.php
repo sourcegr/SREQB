@@ -64,26 +64,24 @@ class Params
         $allParts = [];
         $localParams = [];
 
-        $PLACEHOLDER = $this->parent->getGrammar()->getPlaceholder();
+        $PLACEHOLDER = [$this->parent->getGrammar(), 'getPlaceholder'];
 
         foreach ($data['data'] as $index => $spec) {
             if (is_array($spec)) {
                 [$col, $term, $val, $join] = $spec;
+
                 if ($index > 0) {
                     $allParts[] = " $join ";
                 }
+
                 if ($term === 'IN' || $term === 'NOT IN') {
                     if (is_string($val)) {
-                        $parts = array_map('trim', explode(',', $val));
-                        $phText = implode(',', array_fill(0, count($parts), $PLACEHOLDER));
-                        array_push($localParams, ...$parts);
-                        $allParts[] = "$col $term ($phText)";
-                        continue;
+                        $val = array_map('trim', explode(',', $val));
                     }
 
                     if (is_array($val)) {
                         array_push($localParams, ...$val);
-                        $phText = implode(',', array_fill(0, count($val), $PLACEHOLDER));
+                        $phText = $PLACEHOLDER(count($val));
                         $allParts[] = "$col $term ($phText)";
                         continue;
                     }
@@ -104,7 +102,7 @@ class Params
                     }
 
                     $localParams[] = $val;
-                    $allParts[] = "$col$term$PLACEHOLDER";
+                    $allParts[] = "$col $term ".$PLACEHOLDER();
                     continue;
                 }
 
@@ -115,10 +113,14 @@ class Params
             }
 
             /** @var Params $spec */
-            if (get_class($this) == get_class($spec)) {
-                [$sqlParams, $sqlText] = $spec->createSQLWhere(null, true);
-                $allParts[] = " {$spec->data['term']} ($sqlText)";
-                array_push($localParams, ...$sqlParams);
+            try {
+                if (get_class($this) == get_class($spec)) {
+                    [$sqlParams, $sqlText] = $spec->createSQLWhere(null, true);
+                    $allParts[] = " {$spec->data['term']} ($sqlText)";
+                    array_push($localParams, ...$sqlParams);
+                }
+            }catch (\Exception $e) {
+                var_dump($spec);
             }
         }
 

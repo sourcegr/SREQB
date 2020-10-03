@@ -6,7 +6,6 @@ namespace Tests;
 use Sourcegr\QueryBuilder\QueryBuilder;
 use Sourcegr\QueryBuilder\DB;
 use Sourcegr\QueryBuilder\Raw;
-use Sourcegr\QueryBuilder\Grammars\MySQL;
 use Sourcegr\QueryBuilder\Exceptions\UpdateErrorException;
 use Tests\Stub\Grammar;
 use InvalidArgumentException;
@@ -32,7 +31,7 @@ class UpdateTest extends TestCase
         $res = $this->init();
         [$actual, $params] = $res->update(['name'=> 'new name']);
 
-        $expected = 'UPDATE table SET name=?';
+        $expected = 'UPDATE table SET name = ?';
         $expectedParams = ['new name'];
 
         $this->assertEquals($expected, $actual, 'testUpdate SQL');
@@ -43,7 +42,7 @@ class UpdateTest extends TestCase
         $res = $this->init();
         [$actual, $params] = $res->update('name', 'new name');
 
-        $expected = 'UPDATE table SET name=?';
+        $expected = 'UPDATE table SET name = ?';
         $expectedParams = ['new name'];
 
         $this->assertEquals($expected, $actual, 'testUpdateWith2Parameters SQL');
@@ -55,7 +54,7 @@ class UpdateTest extends TestCase
         $res = $this->init();
         [$actual, $params] = $res->update(['name'=> new Raw('NOW()')]);
 
-        $expected = 'UPDATE table SET name=NOW()';
+        $expected = 'UPDATE table SET name = NOW()';
         $expectedParams = [];
 
         $this->assertEquals($expected, $actual, 'testUpdateRaw SQL');
@@ -67,7 +66,7 @@ class UpdateTest extends TestCase
         $res = $this->init();
         [$actual, $params] = $res->where('id')->update(['name'=> 'new name']);
 
-        $expected = 'UPDATE table SET name=? WHERE id IS NOT NULL';
+        $expected = 'UPDATE table SET name = ? WHERE id IS NOT NULL';
         $expectedParams = ['new name'];
 
         $this->assertEquals($expected, $actual, 'testUpdateWithWhere SQL');

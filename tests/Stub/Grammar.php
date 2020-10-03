@@ -4,10 +4,11 @@ namespace Tests\Stub;
 
 class Grammar
 {
-    public function getPlaceholder()
-    {
-        return '?';
-    }
+    public function getPlaceholder($count = 0)
+        {
+            $PLACEHOLDER = '?';
+            return $count ? implode(',', array_fill(0, $count, $PLACEHOLDER)) : $PLACEHOLDER;
+        }
 
     public function createLimit($count = null, $startAt = null)
     {

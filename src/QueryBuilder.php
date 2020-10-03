@@ -162,22 +162,22 @@ class QueryBuilder
 
     public function whereLike($col, $arr = [])
     {
-        return $this->W('AND', $col, ' LIKE ', $arr);
+        return $this->W('AND', $col, 'LIKE', $arr);
     }
 
     public function orWhereLike($col, $arr = [])
     {
-        return $this->W('OR', $col, ' LIKE ', $arr);
+        return $this->W('OR', $col, 'LIKE', $arr);
     }
 
     public function whereNotLike($col, $arr = [])
     {
-        return $this->W('AND', $col, ' NOT LIKE ', $arr);
+        return $this->W('AND', $col, 'NOT LIKE', $arr);
     }
 
     public function orWhereNotLike($col, $arr = [])
     {
-        return $this->W('OR', $col, ' NOT LIKE ', $arr);
+        return $this->W('OR', $col, 'NOT LIKE', $arr);
     }
 
     public function whereNotIn($col, $arr = [])
@@ -284,7 +284,7 @@ class QueryBuilder
 
         if (!is_array($updateDefinition)) {
             throw new InvalidArgumentException(
-                'The parameter for the insert function should be an associative array or exactly two parameters (column to update, value)'
+                'The parameter for the update function should be an associative array or exactly two parameters (column to update, value)'
             );
         }
 
@@ -296,7 +296,7 @@ class QueryBuilder
             throw new UpdateErrorException('LIMIT/OFFSET cannot be used with UPDATE');
         }
 
-        $PLACEHOLDER = $this->grammar->getPlaceholder();
+        $PLACEHOLDER = [$this->grammar, 'getPlaceholder'];
 
         $insertStringParts = [];
 
@@ -306,9 +306,9 @@ class QueryBuilder
             }
 
             if ($value instanceof Raw) {
-                $insertStringParts[] = "$col=" . $value->getValue();
+                $insertStringParts[] = "$col = " . $value->getValue();
             } else {
-                $insertStringParts[] = "$col=$PLACEHOLDER";
+                $insertStringParts[] = "$col = ". $PLACEHOLDER();
                 $this->sqlParams[] = $value;
             }
         }
@@ -342,7 +342,8 @@ class QueryBuilder
             );
         }
 
-        $PLACEHOLDER = $this->grammar->getPlaceholder();
+//        $PLACEHOLDER = $this->grammar->getPlaceholder;
+        $PLACEHOLDER = [$this->grammar, 'getPlaceholder'];
 
         $columns = [];
         $placeholders = [];
@@ -359,7 +360,7 @@ class QueryBuilder
             if ($value instanceof Raw) {
                 $placeholders[] = $value->getValue();
             } else {
-                $placeholders[] = $PLACEHOLDER;
+                $placeholders[] = $PLACEHOLDER();
                 $this->sqlParams[] = $value;
             }
         }

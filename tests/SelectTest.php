@@ -160,8 +160,8 @@ class SelectTest extends TestCase
     {
         $allStrings = [
             [['id'], 'SELECT * FROM '.static::$table.' WHERE id IS NOT NULL'],
-            [['id', 3], 'SELECT * FROM '.static::$table.' WHERE id=?'],
-            [['id', '>', 3], 'SELECT * FROM '.static::$table.' WHERE id>?'],
+            [['id', 3], 'SELECT * FROM '.static::$table.' WHERE id = ?'],
+            [['id', '>', 3], 'SELECT * FROM '.static::$table.' WHERE id > ?'],
         ];
 
         foreach ($allStrings as $pair) {
@@ -175,7 +175,7 @@ class SelectTest extends TestCase
 
     public function testWhereAssocArray()
     {
-        $expected = 'SELECT * FROM '.static::$table.' WHERE id=? AND name=?';
+        $expected = 'SELECT * FROM '.static::$table.' WHERE id = ? AND name = ?';
         [$actual, $params] = $this->init()->where(['id' => 1, 'name' => 'my name'])->select();
         $this->assertEquals($expected, $actual, 'testWhereAssocArray');
     }
@@ -189,7 +189,7 @@ class SelectTest extends TestCase
 
     public function testWhereMixedArray()
     {
-        $expected = 'SELECT * FROM '.static::$table.' WHERE id IS NOT NULL AND name=?';
+        $expected = 'SELECT * FROM '.static::$table.' WHERE id IS NOT NULL AND name = ?';
         [$actual, $params] = $this->init()->where(['id', 'name' => 'my name'])->select();
         $this->assertEquals($expected, $actual, 'testWhereNumericArray');
     }
@@ -200,7 +200,7 @@ class SelectTest extends TestCase
         $res = $this->init();
         [$actual, $params] = $res->where('id', 1)->orWhere('id', 2)->select();
 
-        $expected = 'SELECT * FROM '.static::$table.' WHERE id=? OR id=?';
+        $expected = 'SELECT * FROM '.static::$table.' WHERE id = ? OR id = ?';
         $this->assertEquals($expected, $actual, 'testOrWhere');
     }
 
@@ -237,7 +237,7 @@ class SelectTest extends TestCase
         $res = $this->init();
         [$actual, $params] = $res->where('id', 1)->orWhereIn('id', [1, 2, 3, 4])->select();
 
-        $expected = 'SELECT * FROM '.static::$table.' WHERE id=? OR id IN (?,?,?,?)';
+        $expected = 'SELECT * FROM '.static::$table.' WHERE id = ? OR id IN (?,?,?,?)';
         $this->assertEquals($expected, $actual, 'testOrWhereIn');
     }
 
@@ -255,7 +255,7 @@ class SelectTest extends TestCase
         $res = $this->init();
         [$actual, $params] = $res->where('id', 1)->orWhereLike('name', 'papas')->select();
 
-        $expected = 'SELECT * FROM '.static::$table.' WHERE id=? OR name LIKE ?';
+        $expected = 'SELECT * FROM '.static::$table.' WHERE id = ? OR name LIKE ?';
         $this->assertEquals($expected, $actual, 'testOrWhereLike');
     }
 
@@ -264,7 +264,7 @@ class SelectTest extends TestCase
         $res = $this->init();
         [$actual, $params] = $res->where('id', 1)->whereNotLike('name', 'papas')->select();
 
-        $expected = 'SELECT * FROM '.static::$table.' WHERE id=? AND name NOT LIKE ?';
+        $expected = 'SELECT * FROM '.static::$table.' WHERE id = ? AND name NOT LIKE ?';
         $this->assertEquals($expected, $actual, 'testWhereNotLike');
     }
 
@@ -273,7 +273,7 @@ class SelectTest extends TestCase
         $res = $this->init();
         [$actual, $params] = $res->where('id', 1)->orWhereNotLike('name', 'papas')->select();
 
-        $expected = 'SELECT * FROM '.static::$table.' WHERE id=? OR name NOT LIKE ?';
+        $expected = 'SELECT * FROM '.static::$table.' WHERE id = ? OR name NOT LIKE ?';
         $this->assertEquals($expected, $actual, 'testOrWhereNotLike');
     }
 
@@ -282,7 +282,7 @@ class SelectTest extends TestCase
         $res = $this->init();
         [$actual, $params] = $res->where('id', 1)->orWhereNotIn('id', [1, 2, 3])->select();
 
-        $expected = 'SELECT * FROM '.static::$table.' WHERE id=? OR id NOT IN (?,?,?)';
+        $expected = 'SELECT * FROM '.static::$table.' WHERE id = ? OR id NOT IN (?,?,?)';
         $this->assertEquals($expected, $actual, 'testOrWhereNotIn');
     }
 
@@ -332,7 +332,7 @@ class SelectTest extends TestCase
             }
         )->select();
 
-        $expected = 'SELECT * FROM '.static::$table.' WHERE id IS NULL OR (name=? AND email=?)';
+        $expected = 'SELECT * FROM '.static::$table.' WHERE id IS NULL OR (name = ? AND email = ?)';
         $this->assertEquals($expected, $actual, 'testOrWhereNotNull');
     }
 
